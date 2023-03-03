@@ -1,14 +1,14 @@
 apiVersion: v1
 entries:
-  my-helm-chart:
+  helm-app:
   - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2023-02-28T01:32:04.362662173Z"
+    appVersion: latest
+    created: "2023-03-03T00:41:03.115730881Z"
     description: A Helm chart for Kubernetes
-    digest: 6af8baf4da33a88ff792371e35b6a5109e57f7821c8f7309dfa7e5b8779378c2
-    name: my-helm-chart
+    digest: 0987a5271e0e7fe713403650b4ff69e3714e1053826c484458aa13ea67277e74
+    name: helm-app
     type: application
     urls:
-    - https://hostspaceng.github.io/helm-charts/my-helm-chart-0.1.0.tgz
+    - https://hostspaceng.github.io/helm-charts/helm-app-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-28T01:32:04.361712161Z"
+generated: "2023-03-03T00:41:03.11469957Z"
