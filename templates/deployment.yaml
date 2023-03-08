@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "my-helm-chart.labels" . | nindent 4 }}
 spec:
+  strategy:
+    type: {{ .Values.deploymentStrategy }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -32,7 +34,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}               
           envFrom:
             - secretRef:
                 name: {{ .Values.envFrom.secretRef.name }}

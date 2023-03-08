@@ -4,14 +4,17 @@
 
 replicaCount: 3
 
+deploymentStrategy: RollingUpdate
+
 image:
-  repository: ghcr.io/starburn-hub/portfolio-app
+  repository: gcr.io/cloudrun/hello
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-imagePullSecrets: 
-  - name: ghcr-secret
+#imagePullSecrets: 
+#  - name: ghcr-secret
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -45,7 +48,7 @@ securityContext: {}
 
 service:
   type: LoadBalancer
-  port: 80
+  port: 8080
 
 ingress:
   enabled: false
@@ -109,3 +112,4 @@ livenessProbe:
   successThreshold: 1
   timeoutSeconds: 10
   initialDelaySeconds: 60
+  
