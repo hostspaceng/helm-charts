@@ -35,6 +35,9 @@ serviceAccount:
 
 podAnnotations: {}
 
+configMap: {}
+  # configMapKey: configMapValue
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -45,6 +48,10 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+
+secret:
+  enabled: true
+  password: "" # generated randomly if not defined
 
 service:
   type: LoadBalancer
@@ -85,19 +92,39 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+podSecurityPolicy:
+  create: false
+  name: ""
+  spec:
+    privileged: true
+    fsGroup:
+      rule: RunAsAny
+    runAsUser:
+      rule: RunAsAny
+    seLinux:
+      rule: RunAsAny
+    supplementalGroups:
+      rule: RunAsAny
+    volumes:
+      - secret
+      - configMap
+      - persistentVolumeClaim
+      - emptyDir
+
 maxUnavailable: 1
 
-podSecurityContext:
-  fsGroup: 1000
-  runAsUser: 1000
+# podSecurityContext:
+#   fsGroup: 1000
+#   runAsUser: 1000
 
-securityContext:
-  capabilities:
-    drop:
-      - ALL
-  # readOnlyRootFilesystem: true
-  runAsNonRoot: true
-  runAsUser: 1000
+# securityContext:
+
+#   capabilities:
+#     drop:
+#       - ALL
+#   # readOnlyRootFilesystem: true
+#   runAsNonRoot: true
+#   runAsUser: 1000
 
 nodeSelector: {}
 
