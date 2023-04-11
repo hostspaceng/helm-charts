@@ -1,6 +1,6 @@
 # helm-app
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -13,6 +13,7 @@ A Helm chart for Kubernetes
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| configMap | object | `{}` |  |
 | deploymentStrategy | string | `"RollingUpdate"` |  |
 | envFrom.configMapRef.name | string | `"configmapname"` |  |
 | envFrom.secretRef.name | string | `"secretname"` |  |
@@ -40,8 +41,17 @@ A Helm chart for Kubernetes
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
-| podSecurityContext.fsGroup | int | `1000` |  |
-| podSecurityContext.runAsUser | int | `1000` |  |
+| podSecurityPolicy.create | bool | `false` |  |
+| podSecurityPolicy.name | string | `""` |  |
+| podSecurityPolicy.spec.fsGroup.rule | string | `"RunAsAny"` |  |
+| podSecurityPolicy.spec.privileged | bool | `true` |  |
+| podSecurityPolicy.spec.runAsUser.rule | string | `"RunAsAny"` |  |
+| podSecurityPolicy.spec.seLinux.rule | string | `"RunAsAny"` |  |
+| podSecurityPolicy.spec.supplementalGroups.rule | string | `"RunAsAny"` |  |
+| podSecurityPolicy.spec.volumes[0] | string | `"secret"` |  |
+| podSecurityPolicy.spec.volumes[1] | string | `"configMap"` |  |
+| podSecurityPolicy.spec.volumes[2] | string | `"persistentVolumeClaim"` |  |
+| podSecurityPolicy.spec.volumes[3] | string | `"emptyDir"` |  |
 | readinessProbe.enabled | bool | `false` |  |
 | readinessProbe.httpGet.path | string | `"/"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |
@@ -52,10 +62,9 @@ A Helm chart for Kubernetes
 | readinessProbe.timeoutSeconds | int | `10` |  |
 | replicaCount | int | `3` |  |
 | resources | object | `{}` |  |
+| secret.enabled | bool | `true` |  |
+| secret.password | string | `""` |  |
 | securityContext | object | `{}` |  |
-| securityContext.capabilities.drop[0] | string | `"ALL"` |  |
-| securityContext.runAsNonRoot | bool | `true` |  |
-| securityContext.runAsUser | int | `1000` |  |
 | service.port | int | `8080` |  |
 | service.type | string | `"LoadBalancer"` |  |
 | serviceAccount.annotations | object | `{}` |  |
