@@ -1,0 +1,24 @@
+
+repositories:
+- name: grafana
+  url: https://grafana.github.io/helm-charts
+
+  environments:
+  development:
+  staging:
+  production:
+releases:
+  - name: loki
+    needs:
+    - monitoring-stack    
+    namespace: monitoring
+    chart: grafana/loki
+    version: 5.3.1
+    disableValidation: true
+  - name: promtail
+    needs:
+    - monitoring-stack    
+    namespace: monitoring
+    chart: grafana/promtail
+    version: 6.11.0
+    disableValidation: true
