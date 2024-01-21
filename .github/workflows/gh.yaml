@@ -1,7 +1,6 @@
-name: release
+name: Deploy Chart to GH pages
 on:
   push:
-    tags: '*'
 
 jobs:
   release:
